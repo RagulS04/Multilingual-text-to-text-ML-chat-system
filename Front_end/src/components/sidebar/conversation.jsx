@@ -1,6 +1,6 @@
 import React from 'react'
 
-const conversation = () => {
+const Conversation = () => {
   return (
     <div className='flex items-center gap-x-5 hover:bg-blue-200 py-2 px-3 rounded-lg mb-2'>
         <div className="avatar online">
@@ -13,4 +13,4 @@ const conversation = () => {
   )
 }
 
-export default conversation
+export default Conversation

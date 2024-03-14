@@ -1,7 +1,7 @@
 import React from 'react'
-import Conversation from './conversation'
+import Conversation from './Conversation'
 
-const conversations = () => {
+const Conversations = () => {
   return (
     <div className=''>
         <Conversation />
@@ -10,4 +10,4 @@ const conversations = () => {
   )
 }
 
-export default conversations
+export default Conversations
