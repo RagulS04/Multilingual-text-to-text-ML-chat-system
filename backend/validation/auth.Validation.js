@@ -34,15 +34,19 @@ const signupSchema = Joi.object({
         'string.email': 'Email should be in a valid email format',
         'any.required': 'Email is required'
     }),
-    password: Joi.string().required().messages({
+    password: Joi.string().min(8).max(16).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/).required().messages({
         'string.empty': 'Password cannot be empty',
-        'string.email': 'Password should be in a valid email format',
-        'any.required': 'Password is required'
+        'any.required': 'Password is required',
+        'string.min': 'Password must be at least 8 characters long.',
+        'string.max': 'Password must be at most 16 characters long.',
+        'string.pattern.base': 'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.'
     }),
-    confirmPassword: Joi.string().required().messages({
+    confirmPassword: Joi.string().min(8).max(16).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/).required().messages({
         'string.empty': 'Confirm Password cannot be empty',
-        'string.email': 'Confirm Password should be in a valid email format',
-        'any.required': 'Confirm Password is required'
+        'any.required': 'Confirm Password is required',
+        'string.min': 'Confirm Password must be at least 8 characters long.',
+        'string.max': 'Confirm Password must be at most 16 characters long.',
+        'string.pattern.base': 'Confirm Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.'
     })
 })
 export const userDetailsValidation = async (req, res, next) => {

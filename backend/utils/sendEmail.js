@@ -26,8 +26,8 @@ const sendMail = async (transporter, otp, receiverEmail) => {
                 address: process.env.USER
             },
             to: receiverEmail,
-            subject: "OTP for signing up Multilingual Chat Application",
-            text: "OTP for signing up into your account is " + otp + ". Don't share with anyone"
+            subject: "OTP - Signup verification",
+            html: "<b>Your One Time Password for signing up into your account is below.Don't share with anyone</b> <h1 style='font-size:40px'><center>" + otp + "</center></h1>"
         }
         await transporter.sendMail(mailOptions);
     } catch (error) {
