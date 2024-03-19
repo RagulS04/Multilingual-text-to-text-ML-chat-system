@@ -22,7 +22,7 @@ const useLogout = () => {
                 throw new Error(data.error)
             }
 
-            localStorage.removeItem(data);
+            localStorage.removeItem("chat-user");
             setAuthuser(null);
 
         } catch (error) {

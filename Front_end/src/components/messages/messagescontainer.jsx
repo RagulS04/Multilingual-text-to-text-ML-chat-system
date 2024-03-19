@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Messages from './messages'
 import Messageinput from './messageinput'
 
 import Lottie from 'lottie-react'
 import chat_interface from "../../assets/img/animation/chat_interface.json"
+import useConversation from '../../zustand/useConversation'
 
 const messagescontainer = () => {
-    const nochat = true;
+    const {selectedConversation,setSelectedConversation} = useConversation();
+
+    useEffect(()=>{
+        return () => setSelectedConversation(null);
+    },[setSelectedConversation])
     
   return (
     <div className='md:min-w-[450px] flex flex-col'>
-        { nochat ? (<NoChatSelected />) : (
+        { !selectedConversation ? (<NoChatSelected />) : (
             <>
                 <div className='bg-gray-800 px-4 py-2 mb-2'>
                     <span className='text-white font-bold '>TO:</span>
-                    <span className='pl-6 font-bold'>john doe</span>
+                    <span className='pl-6 font-bold'>{selectedConversation.fullname}</span>
                 </div>
 
                 <Messages />

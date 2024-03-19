@@ -5,21 +5,22 @@ import useSignup from '../../hooks/useSignup';
 
 const Signup = () => {
 
-  const [inputs,setInputs] = useState({
+const [inputs,setInputs] = useState({
     fullname:'',
     username:'',
     password:'',
     confirmpassword:'',
-    gender:''
-  });
+    gender:'',
+    email:''
+});
 
-  const {signup} = useSignup();
+const {loading,signup} = useSignup();
 
-  const handleGender = (gender) => {
-    setInputs({...inputs,gender})
-  }
+const handleGender = (gender) => {
+  setInputs({...inputs,gender})
+}
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(inputs)
     console.log(inputs)
@@ -61,9 +62,9 @@ const Signup = () => {
             <Link to='/login'>Already have an account ?</Link>
 
             <div>
-                <button className='bg-white text-black px-3 py-2 m-3 w-full rounded-full bordered hover:bg-black hover:text-white font-extrabold bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ...' >Sign up</button>
+                <button className='bg-white text-black px-3 py-2 m-3 w-full rounded-full bordered hover:bg-black hover:text-white font-extrabold bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ...' disabled={loading}>{loading ? <span className="loading loading-spinner loading-md"></span> : "Sign up" }</button>
             </div>
-        </form>
+          </form>
     </div>
   )
 }
