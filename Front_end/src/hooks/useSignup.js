@@ -7,10 +7,7 @@ const useSignup = () => {
 
     const {setAuthuser} = useAuthContext();
 
-    const signup = async ({fullname,username,password,confirmpassword,gender}) => {
-        const checkres = checkError({fullname,username,password,confirmpassword,gender});
-
-        if(!checkres) return;
+    const signup = async ({fullname,username,password,confirmpassword,gender,email}) => {
 
         setLoading(true)
 
@@ -18,7 +15,7 @@ const useSignup = () => {
             const res = await fetch("http://localhost:5000/api/auth/signup", {
                 method: "POST",
                 headers: {"Content-type":"application/json"},
-                body: JSON.stringify({fullname,username,password,confirmpassword,gender})
+                body: JSON.stringify({fullname,username,password,confirmpassword,email,gender})
             });
 
             const data = await res.json()
@@ -42,23 +39,3 @@ const useSignup = () => {
 }
 
 export default useSignup;
-
-function checkError ({fullname,username,password,confirmpassword,gender}){
-
-    if(!fullname || !username || !password || !confirmpassword || !gender){
-        toast.error("please fill all the fields")
-        return false;
-    }
-
-    if(password !== confirmpassword){
-        toast.error("Passwords do no match")
-        return false;
-    }
-
-    if(password.length < 6){
-        toast.error("password must be minimum 6 characters");
-        return false;
-    }
-
-    return true;
-};

@@ -5,6 +5,7 @@ import Signup from './pages/signup/Signup';
 import Login from "./pages/login/Login"
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
+import Otp_verify from './pages/signup/Otp_verify';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={ authuser ? <HomePage /> : < Navigate to={"/login"} />} />
         <Route path="/login" element={authuser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authuser ? <Navigate to='/' /> : <Signup />} />
+        <Route path='/otp_verify' element={<Otp_verify />} />
       </Routes>
       <Toaster />
     </div>

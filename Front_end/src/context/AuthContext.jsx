@@ -10,7 +10,16 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({children})=>{
     const [authuser,setAuthuser] = useState(JSON.parse(localStorage.getItem("chat-user")) || null)
 
-    return <AuthContext.Provider value={{authuser,setAuthuser}} >
+    const [inputs,setInputs] = useState({
+        fullname:'',
+        username:'',
+        password:'',
+        confirmpassword:'',
+        gender:'',
+        email:''
+    });
+
+    return <AuthContext.Provider value={{authuser,setAuthuser,inputs,setInputs}} >
        {children}
     </AuthContext.Provider>
 }
