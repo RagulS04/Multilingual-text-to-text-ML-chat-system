@@ -1,6 +1,6 @@
 import express from "express"
-import { userDetailsValidation, emailVerificationValidation, signupValidation } from "../validation/auth.Validation.js";
-import { userDetails, emailVerification, signup } from "../controllers/auth.controller.js";
+import { userDetailsValidation, emailVerificationValidation, signupValidation, loginValidation, resendOtpValidation } from "../validation/auth.Validation.js";
+import { userDetails, emailVerification, signup, resendOTP, login, logout } from "../controllers/auth.controller.js";
 
 const router = express.Router()
 
@@ -8,7 +8,12 @@ const router = express.Router()
 router.post("/user-details", userDetailsValidation, userDetails);
 router.post("/email-verification/:email", emailVerificationValidation, emailVerification)
 router.post("/signup", signupValidation, signup)
+router.post("/resend-otp", resendOtpValidation, resendOTP)
 
 //Login
-router.post("/login")
+router.post("/login", loginValidation, login)
+
+//Logout
+router.post('/logout', logout)
+
 export default router;

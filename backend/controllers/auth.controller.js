@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs"
 import User from "../models/user.model.js"
 import { sendEmail } from "../utils/sendEmail.js";
+import { generateToken } from "../utils/generateTokens.js";
 
 export const userDetails = async (req, res) => {
     try {
@@ -69,23 +70,26 @@ export const signup = async (req, res) => {
         
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        
+
         if (password != confirmPassword) {
             return res.status(400).json({ error: "Password don't match" })
         }
-        const user = await User.findOne({email});
-        if(!user) {
-            return res.status(404).json({message: "User not found"})
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
         }
 
-        else if(user.verified === false) {
-            return res.status(404).json({message: "User not Verified"})
+        else if (user.verified === false) {
+            return res.status(404).json({ message: "User not Verified" })
         }
 
-        else if(user.password !== "") {
-            return res.status(404).json({message: "User already registered"})
+        else if (user.password !== "") {
+            return res.status(404).json({ message: "User already registered" })
         }
-        const update = await User.findOneAndUpdate({ email: email, verified: true, password:"" }, { password: hashedPassword });
+        const update = await User.findOneAndUpdate({ email: email, verified: true, password: "" }, { password: hashedPassword });
+        
+        generateToken(user._id, res)
         
         return res.status(200).json({ message: "User registered Successfully" })
     } catch (error) {
@@ -93,3 +97,48 @@ export const signup = async (req, res) => {
     }
 }
 
+export const resendOTP = async (req, res) => {
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+        if (!user)
+            return res.status(404).json({ message: "User not found" })
+        else if (user.verified)
+            return res.status(300).json({ message: "User already verified" })
+
+        sendEmail(user.password, email);
+        res.status(200).json({ message: "OTP has been resent" })
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" })
+    }
+}
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User doesn't exists" })
+        }
+        const validPassword = await bcrypt.compare(password, user.password);
+
+        if (!validPassword) {
+            return res.status(400).json({ message: "Invalid credentials" })
+        }
+
+        generateToken(user._id, res)
+        res.status(200).json({ message: `Login successful`, data: { _id: user._id, fullname: user.fullname, profilePic: user.profilePic } })
+
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" })
+    }
+}
+
+export const logout = async (req, res) => {
+    try {
+        res.clearCookie("jwt")
+        res.status(200).json({ message: "Logged out successfully" })
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" })
+    }
+}
