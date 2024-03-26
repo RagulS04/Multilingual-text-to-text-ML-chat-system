@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: process.env.USER,
-        pass: process.env.APP_PASSWORD,
+        user: "selva152004@gmail.com",
+        pass: "jfol rugw xbuh puwh",
     },
 });
 
@@ -23,7 +23,7 @@ const sendMail = async (transporter, otp, receiverEmail) => {
         const mailOptions = {
             from: {
                 name: "Multilingual Chat App",
-                address: process.env.USER
+                address: "selva152004@gmail.com",
             },
             to: receiverEmail,
             subject: "OTP - Signup verification",

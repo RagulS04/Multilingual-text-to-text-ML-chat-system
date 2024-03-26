@@ -12,16 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "browserify-zlib": "^0.2.0",
     "cookie-parser": "^1.4.6",
-<<<<<<< HEAD
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.18.3",
-    "jsonwebtoken": "^9.0.2",
-    "lottie-react": "^2.4.0",
-    "mongoose": "^8.2.1",
-    "socket.io": "^4.7.4"
-=======
+    "crypto-browserify": "^3.12.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.18.3",
@@ -30,9 +24,13 @@
     "lottie-react": "^2.4.0",
     "mongoose": "^8.2.1",
     "nodemailer": "^6.9.12",
+    "path-browserify": "^1.0.1",
+    "querystring-es3": "^0.2.1",
     "socket.io": "^4.7.4",
-    "twilio": "^5.0.1"
->>>>>>> origin/selva
+    "stream-browserify": "^3.0.0",
+    "twilio": "^5.0.1",
+    "url": "^0.11.3",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "daisyui": "^4.7.3",

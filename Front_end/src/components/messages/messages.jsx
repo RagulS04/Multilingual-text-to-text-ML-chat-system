@@ -1,9 +1,9 @@
-import React from 'react'
-import Message from './message'
+import React,{useEffect,useRef} from 'react'
+import Message from './Message'
 import useGetMessage from '../../hooks/useGetMessages'
 import MessageSkeleton from '../skeleton/MessageSkeleton';
 
-const messages = () => {
+const Messages = () => {
   
   const {messages,loading} = useGetMessage();
 
@@ -18,14 +18,15 @@ const messages = () => {
   return (
     <div className='px-4 overflow-auto'>
 
-      {!loading && messages.length > 0 && messages.map((message)=>(
+      {!loading && messages.length > 0 && messages.map((message,idx)=>(
         <div key={message._id} ref={lastMessageRef}>
-          <Message message={message} />
+          {/* {console.log(message)} */}
+          <Message key={idx} message={message} />
         </div>
       ))}
 
-      {loading && [...Array(3)].map((_,idx) => <MessageSkeleton key={idx} />)}
-      {loading && messages.length === 0 && (
+      {loading && [...Array(4)].map((_,idx) => <MessageSkeleton key={idx} />)}
+      {!loading && messages.length === 0 && (
         <p>send message to start conversation</p>
       )}
 
@@ -33,4 +34,4 @@ const messages = () => {
   )
 }
 
-export default messages
+export default Messages

@@ -12,9 +12,9 @@ export const AuthContextProvider = ({children})=>{
 
     const [inputs,setInputs] = useState({
         fullname:'',
-        username:'',
+        mobile:'',
         password:'',
-        confirmpassword:'',
+        confirmPassword:'',
         gender:'',
         email:''
     });

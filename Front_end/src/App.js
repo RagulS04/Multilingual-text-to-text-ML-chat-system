@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={ authuser ? <HomePage /> : < Navigate to={"/login"} />} />
         <Route path="/login" element={authuser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authuser ? <Navigate to='/' /> : <Signup />} />
-        <Route path='/otp_verify' element={<Otp_verify />} />
+        <Route path='/otp_verify' element={authuser ? <Navigate to='/' /> :<Otp_verify />} />
       </Routes>
       <Toaster />
     </div>

@@ -1,12 +1,11 @@
-import React from 'react'
-//import Sidebar from '../../components/sidebar/sidebar';
-//import Messagescontainer from '../../components/messages/messagescontainer';
+import Sidebar from '../../components/sidebar/Sidebar';
+import MessagesContainer from '../../components/messages/MessagesContainer';
 
 const HomePage = () => {
   return (
 		<div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-			{/* <Sidebar />
-			<Messagescontainer /> */}
+			<Sidebar />
+			<MessagesContainer />
 		</div>
 	);
 }

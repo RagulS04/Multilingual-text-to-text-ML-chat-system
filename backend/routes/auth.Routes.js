@@ -1,11 +1,4 @@
 import express from "express"
-<<<<<<< HEAD
-import { signup } from "../controllers/auth.controller.js";
-
-const router = express.Router()
-
-router.post("/signup", signup);
-=======
 import { userDetailsValidation, emailVerificationValidation, signupValidation, loginValidation, resendOtpValidation } from "../validation/auth.Validation.js";
 import { userDetails, emailVerification, signup, resendOTP, login, logout } from "../controllers/auth.controller.js";
 
@@ -22,6 +15,5 @@ router.post("/login", loginValidation, login)
 
 //Logout
 router.post('/logout', logout)
->>>>>>> origin/selva
 
 export default router;

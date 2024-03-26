@@ -1,5 +1,3 @@
-import React from 'react'
-
 const GenderCheckBox = ({handleGender,selectedGender}) => {
   return (
     <div className='flex justify-around'>

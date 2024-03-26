@@ -6,31 +6,43 @@ const useLogin = () => {
     const [loading,setLoading] = useState(false);
     const {setAuthuser} = useAuthContext();
 
-    const login = async({username,password}) => {
+    const login = async({email,password}) => {
         
-        const check = checkError({username,password})
+        const check = checkError({email,password})
 
         if(!check) return;
 
         setLoading(true);
         
         try {
-            const res = await fetch("http",{
+            const res = await fetch("http://localhost:5000/api/auth/login",{
                 method: "POST",
                 headers: {"Content-type" : "application/json"},
-                body: JSON.stringify({username,password})
-            })
+                body: JSON.stringify({email,password})
+            });
 
-            const data = res.json()
+            const data = await res.json()
 
+            const token = data["token"];
+            localStorage.setItem('token', token);
+            
             if(data.error){
                 throw new Error(data.error);
+            }
+
+            if(res.status !== 200){
+                toast.error(data.message)
+            }else {
+                toast.success(data.message)
             }
 
             localStorage.setItem("chat-user",JSON.stringify(data))
             setAuthuser(data)
 
+            
+
         } catch (error) {
+            console.log(error.message)
             toast.error(error.message);
         } finally{
             setLoading(false)
@@ -42,8 +54,8 @@ const useLogin = () => {
 
 export default useLogin
 
-function checkError ({username,password}){
-    if(!username || !password){
+function checkError ({email,password}){
+    if(!email || !password){
         toast.error("Please fill all the fields")
         return false;
     }

@@ -1,4 +1,3 @@
-import React from 'react'
 import { TbLogout2 } from "react-icons/tb";
 import useLogout from '../../hooks/useLogout';
 

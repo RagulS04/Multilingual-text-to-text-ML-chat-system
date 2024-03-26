@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {BsSend} from "react-icons/bs"
 import useSendMessage from '../../hooks/useSendMessage'
 
-const messageinput = () => {
+const MessageInput = () => {
 
 	const [message,setMessage] = useState("");
 	
@@ -27,12 +27,12 @@ const messageinput = () => {
 						value={message}
 						onChange={(e)=> setMessage(e.target.value)}
 					/>
-					<button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>
+					{!loading ? <button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>
 						<BsSend />
-					</button>
+					</button> : <span className="loading loading-ring loading-xs absolute inset-y-0 end-0 flex items-center pe-3 mt-3 mr-4 "></span>}
 				</div>
 			</form>
 	)
 }
 
-export default messageinput
+export default MessageInput

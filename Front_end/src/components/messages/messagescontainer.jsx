@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import Messages from './messages'
-import Messageinput from './messageinput'
+import Messages from './Messages'
+import Messageinput from './MessageInput'
 
 import Lottie from 'lottie-react'
 import chat_interface from "../../assets/img/animation/chat_interface.json"
 import useConversation from '../../zustand/useConversation'
 
-const messagescontainer = () => {
+const MessagesContainer = () => {
     const {selectedConversation,setSelectedConversation} = useConversation();
 
     useEffect(()=>{
@@ -31,7 +31,7 @@ const messagescontainer = () => {
   )
 }
 
-export default messagescontainer
+export default MessagesContainer
 
 
 const NoChatSelected = () =>{
