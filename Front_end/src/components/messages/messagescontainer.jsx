@@ -5,6 +5,7 @@ import Messageinput from './MessageInput'
 import Lottie from 'lottie-react'
 import chat_interface from "../../assets/img/animation/chat_interface.json"
 import useConversation from '../../zustand/useConversation'
+import { useAuthContext } from '../../context/AuthContext'
 
 const MessagesContainer = () => {
     const {selectedConversation,setSelectedConversation} = useConversation();
@@ -35,11 +36,12 @@ export default MessagesContainer
 
 
 const NoChatSelected = () =>{
+    const {authuser} = useAuthContext();
     return (
         <div className='flex items-center justify-center'>
             
 			<div className='px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2 mt-12'>
-				<p>Welcome 👋 ❄</p>
+				<p>Welcome 👋 {authuser.data.fullname}❄</p>
 				<p>Select a chat to start messaging</p>
 
 				<Lottie animationData={chat_interface} className='absolute top-20 w-13 h-13 mt-11 ' />

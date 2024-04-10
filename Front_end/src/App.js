@@ -9,6 +9,8 @@ import Otp_verify from './pages/signup/Otp_verify';
 
 function App() {
 
+  // const [position,setPosition]
+
   const {authuser} = useAuthContext()
   return (
     <div className="bg-login-bg w-full bg-cover bg-bottom bg-no-repeat p-4 h-screen flex  justify-center items-center">

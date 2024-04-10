@@ -22,13 +22,13 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
             <div className='flex flex-col'>
                 <label className='mb-1  font-extrabold'>email</label>
-                <input className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter username'
+                <input type = "email" className='w-full font-light rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter username'
                   value={email}
                   onChange={(e)=> setEmail(e.target.value)}
                 ></input>
         
                 <label className='mb-1 font-extrabold'>Password</label>
-                <input type = "password" className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter password'
+                <input type = "password" className='w-full font-light rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter password'
                   value={password}
                   onChange={(e)=> setPassword(e.target.value)}
                 ></input>

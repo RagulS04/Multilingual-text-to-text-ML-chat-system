@@ -55,12 +55,9 @@ const loginSchema = Joi.object({
         'string.email': 'Email should be in a valid email format',
         'any.required': 'Email is required'
     }),
-    password: Joi.string().min(8).max(16).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/).required().messages({
+    password: Joi.string().required().messages({
         'string.empty': 'Password cannot be empty',
-        'any.required': 'Password is required',
-        'string.min': 'Password must be at least 8 characters long.',
-        'string.max': 'Password must be at most 16 characters long.',
-        'string.pattern.base': 'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.'
+        'any.required': 'Password is required'
     })
 })
 const resendOtpSchema = Joi.object({

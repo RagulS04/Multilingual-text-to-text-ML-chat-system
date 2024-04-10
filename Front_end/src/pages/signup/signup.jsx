@@ -43,13 +43,13 @@ const Signup = () => {
                 ></input>
 
                 <label className='mb-1  font-extrabold'>Mobile</label>
-                <input className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter username'
+                <input type="tel" className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter username'
                   value={inputs.mobile}
                   onChange={(e)=>{setInputs({...inputs, mobile:e.target.value})}}
                 ></input>
 
                 <label className='mb-1  font-extrabold'>Email</label>
-                <input className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter email'
+                <input type='email' className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter email'
                   value={inputs.email}
                   onChange={(e)=>{setInputs({...inputs, email:e.target.value})}}></input>
 

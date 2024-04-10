@@ -8,6 +8,8 @@ const Message = ({message}) => {
   const {authuser} = useAuthContext();
   const {selectedConversation} = useConversation()
 
+  const shakeClass = message => message.shouldShake ? "shake" : "";
+
   //console.log("auth",authuser.data._id,"sele",message.senderId)
 
   const fromMe = message.senderId === authuser.data._id;
@@ -28,7 +30,7 @@ const Message = ({message}) => {
                 </div>
             </div>
             
-            <div className={`chat-bubble ${bubbleBgcolour}`}>{message.message}</div>
+            <div className={`chat-bubble ${bubbleBgcolour} ${shakeClass}`}>{message.message}</div>
             <time className="text-xs opacity-50">{formattedTime}</time>
         </div>
     </div>

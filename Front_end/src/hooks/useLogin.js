@@ -23,8 +23,7 @@ const useLogin = () => {
 
             const data = await res.json()
 
-            const token = data["token"];
-            localStorage.setItem('token', token);
+            
             
             if(data.error){
                 throw new Error(data.error);
@@ -34,10 +33,13 @@ const useLogin = () => {
                 toast.error(data.message)
             }else {
                 toast.success(data.message)
+                const token = data["token"];
+                localStorage.setItem('token', token);
+                localStorage.setItem("chat-user",JSON.stringify(data))
+            setAuthuser(data)
             }
 
-            localStorage.setItem("chat-user",JSON.stringify(data))
-            setAuthuser(data)
+            
 
             
 

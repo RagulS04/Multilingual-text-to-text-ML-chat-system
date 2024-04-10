@@ -1,6 +1,6 @@
 import express from "express"
 import { userDetailsValidation, emailVerificationValidation, signupValidation, loginValidation, resendOtpValidation } from "../validation/auth.Validation.js";
-import { userDetails, emailVerification, signup, resendOTP, login, logout } from "../controllers/auth.controller.js";
+import { userDetails, emailVerification, signup, resendOTP, login } from "../controllers/auth.controller.js";
 
 const router = express.Router()
 
@@ -13,7 +13,6 @@ router.post("/resend-otp", resendOtpValidation, resendOTP)
 //Login
 router.post("/login", loginValidation, login)
 
-//Logout
-router.post('/logout', logout)
+
 
 export default router;
