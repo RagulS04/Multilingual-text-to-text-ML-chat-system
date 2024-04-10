@@ -17,9 +17,6 @@ const Otp_verify = () => {
   const handleSubmit = async(e) =>{
     e.preventDefault();
 
-    console.log(inputs)
-
-    console.log("handlesubmit")
 
     await setpass(inputs)
   }
@@ -29,7 +26,6 @@ const Otp_verify = () => {
 
     const mail = inputs.email;
 
-    console.log(inputs)
     
     try {
       const res = await fetch(`http://localhost:5000/api/auth/email-verification/${mail}`,{
@@ -39,7 +35,6 @@ const Otp_verify = () => {
     });
 
     const data = await res.json()
-    console.log(data)
 
     if(res.status === 400){
       console.log("error")
@@ -47,7 +42,6 @@ const Otp_verify = () => {
         throw new Error(data.message)
     }
     
-      console.log(inputs.email)
       setVerified(true)
 
     } catch (error) {
@@ -62,7 +56,6 @@ const Otp_verify = () => {
     try{
       const email = inputs.email;
 
-      console.log(email)
       const res = await fetch(`http://localhost:5000/api/auth/resend-otp`,{
         method:"POST",
         headers: {"Content-type":"application/json"},
@@ -70,7 +63,6 @@ const Otp_verify = () => {
       })
 
       const data = await res.json()
-      console.log(data)
 
       toast.success("Signup successful")
 

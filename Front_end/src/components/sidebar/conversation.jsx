@@ -10,13 +10,11 @@ const Conversation = ({conversation}) => {
   const {onlineUsers} = useSocketContext()
 
   const isOnline = onlineUsers.includes(conversation._id)
-  console.log(onlineUsers)
   return (
     <div className={`flex items-center gap-x-5 hover:bg-blue-200 py-2 px-3 rounded-lg mb-2
       ${ isSelected ? "bg-sky-500" : ""}`
     } onClick={()=>{
       setSelectedConversation(conversation)
-      //console.log(selectedConversation)
     }}>
       
         <div className={`avatar ${isOnline ? "online" : ""}`}>

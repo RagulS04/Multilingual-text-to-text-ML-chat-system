@@ -10,11 +10,7 @@ const Message = ({message}) => {
 
   const shakeClass = message => message.shouldShake ? "shake" : "";
 
-  //console.log("auth",authuser.data._id,"sele",message.senderId)
-
   const fromMe = message.senderId === authuser.data._id;
-  
-  console.log(fromMe)
 
   const chatClass = fromMe ? "chat-end" : "chat-start";
   const formattedTime = extractTime(message.createdAt)

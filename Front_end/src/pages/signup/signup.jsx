@@ -43,7 +43,7 @@ const Signup = () => {
                 ></input>
 
                 <label className='mb-1  font-extrabold'>Mobile</label>
-                <input type="tel" className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter username'
+                <input type="tel" className='w-full rounded-lg py-1 mx-1 px-4 mb-3 input input-primary' placeholder='Enter mobile'
                   value={inputs.mobile}
                   onChange={(e)=>{setInputs({...inputs, mobile:e.target.value})}}
                 ></input>

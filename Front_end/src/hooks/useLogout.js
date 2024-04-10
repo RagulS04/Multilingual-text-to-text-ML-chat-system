@@ -23,6 +23,7 @@ const useLogout = () => {
         //     }
 
             localStorage.removeItem("chat-user");
+            localStorage.removeItem("token");
             setAuthuser(null);
 
         } catch (error) {

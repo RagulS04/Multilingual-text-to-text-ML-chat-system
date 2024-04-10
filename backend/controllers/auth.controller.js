@@ -51,13 +51,10 @@ export const emailVerification = async (req, res) => {
 
         const emailEntry = await User.findOne({ email })
 
-        console.log("email",emailEntry,otp)
-
         //if (!emailEntry) return res.status(404).json({ message: "User not Found" });
         if (emailEntry.password === otp) {
             await User.updateOne({ email: email }, { verified: true, password: "" })
             res.status(200).json({ message: "OTP verified successfully", data: email })
-            console.log("verified")
         }
         else {
             res.status(400).json({ message: "Invalid OTP. Try Again" })
@@ -93,9 +90,10 @@ export const signup = async (req, res) => {
         }
         const update = await User.findOneAndUpdate({ email: email, verified: true, password: "" }, { password: hashedPassword });
         
-        generateToken(user._id, res)
-        
-        return res.status(200).json({ message: "User registered Successfully" })
+        const userId = user._id
+        // generateToken(user._id, res)
+        const token = jwt.sign({userId}, process.env.JWT_SECRET    )
+        return res.status(200).json({ message: "User registered Successfully"  , data: { _id: user._id, fullname: user.fullname, profilePic: user.profilePic},token: token})
     } catch (error) {
         res.status(500).json({ error: "Internal server error" })
     }
@@ -132,7 +130,7 @@ export const login = async (req, res) => {
 
         // generateToken(user._id, res)
         const userId = user._id
-        const token = jwt.sign({userId}, `IagbZ4Tj91VGsU+PuCbRbb/3iMbAuxS/FVGB7QlP7ok=`)
+        const token = jwt.sign({userId}, process.env.JWT_SECRET    )
         res.status(200).json({ message: `Login successful`, data: { _id: user._id, fullname: user.fullname, profilePic: user.profilePic},token: token })
 
     } catch (error) {

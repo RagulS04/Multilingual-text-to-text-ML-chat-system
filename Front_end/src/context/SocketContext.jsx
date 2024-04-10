@@ -16,19 +16,15 @@ export const SocketContextProvider = ({children}) => {
 
     useEffect(()=>{
         if(authuser){
-
-            console.log(authuser)
             const socket = io("http://localhost:5000",{
                 query: {userId: authuser.data._id}
             })
-            console.log(authuser.data._id)
             
             setSocket(socket);
 
             socket.on("getOnlineUsers",(users)=>{
                 setOnlineUsers(users);
             })
-            console.log(onlineUsers)
             return ()=> socket.close();
         }else{
             if(socket){
