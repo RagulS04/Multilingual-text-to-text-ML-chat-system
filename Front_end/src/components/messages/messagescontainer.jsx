@@ -8,6 +8,13 @@ import useConversation from '../../zustand/useConversation'
 import { useAuthContext } from '../../context/AuthContext'
 
 const MessagesContainer = () => {
+
+    const {selectedLanguage,languages,setSelectedLanguage} = useAuthContext();
+      
+    const handleChange = (event) => {
+        setSelectedLanguage(event.target.value);
+    }; 
+
     const {selectedConversation,setSelectedConversation} = useConversation();
 
     useEffect(()=>{
@@ -18,9 +25,20 @@ const MessagesContainer = () => {
     <div className='md:min-w-[450px] flex flex-col'>
         { !selectedConversation ? (<NoChatSelected />) : (
             <>
-                <div className='bg-gray-800 px-4 py-2 mb-2'>
-                    <span className='text-white font-bold '>TO:</span>
-                    <span className='pl-6 font-bold'>{selectedConversation.fullname}</span>
+                <div className='bg-gray-800 px-4 py-2 mb-2 flex flex-row justify-around'>
+                    <div>
+                        <span className='text-white font-bold '>TO:</span>
+                        <span className='pl-6 font-bold'>{selectedConversation.fullname}</span>
+                    </div>
+                    <div>
+                        <select value={selectedLanguage} onChange={handleChange}>
+                            {languages.map((language) => (
+                                <option key={language.value} value={language.value}>
+                            {language.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
 
                 <Messages />

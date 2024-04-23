@@ -2,11 +2,13 @@ import {useEffect, useState} from 'react'
 import useConversation from '../zustand/useConversation';
 import toast from "react-hot-toast"
 import useSendMessage from './useSendMessage';
+import { useAuthContext } from '../context/AuthContext';
 
 const useGetMessages = () => {
     const [loading,setLoading] = useState(false);
     const {sendMessage} = useSendMessage()
 
+    const { setSelectedLanguage } = useAuthContext();
     const {messages,setMessages,selectedConversation} = useConversation();
 
     useEffect(()=>{
@@ -26,7 +28,7 @@ const useGetMessages = () => {
 
                 //console.log("response",res.messages)
 
-                const data =await res.json();
+                const data = await res.json();
 
                 //console.log(data[0])
                 
@@ -46,7 +48,7 @@ const useGetMessages = () => {
             getMessages()
         }
 
-    },[setMessages, selectedConversation._id])
+    },[setMessages, selectedConversation._id,setSelectedLanguage])
 
     return {loading,messages}
 }

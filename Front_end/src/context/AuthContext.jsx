@@ -19,7 +19,15 @@ export const AuthContextProvider = ({children})=>{
         email:''
     });
 
-    return <AuthContext.Provider value={{authuser,setAuthuser,inputs,setInputs}} >
+    const languages = [
+        { value: 'english', label: 'English' },
+        { value: 'tamil', label: 'தமிழ் (Tamil)' }, // Tamil in Unicode
+        { value: 'hindi', label: 'हिंदी (Hindi)' },  // Hindi in Unicode
+      ];
+
+    const [selectedLanguage, setSelectedLanguage] = useState(languages[0].value); // Initial language
+
+    return <AuthContext.Provider value={{authuser,setAuthuser,inputs,setInputs,languages,selectedLanguage,setSelectedLanguage}} >
        {children}
     </AuthContext.Provider>
 }
