@@ -19,19 +19,24 @@ const usePassword = () => {
             });
 
             const data = await res.json()
-            console.log(data)
 
-            if(res.status === 500){
-                toast.error(data.message)
-            }
+
 
             if(data.error){
                 throw new Error(data.error)
             }
 
+            
+
+            if(res.status !== 200){
+                toast.error(data.message)
+            }else {
+                toast.success(data.message)
+                const token = data["token"];
+            localStorage.setItem('token', token);
             localStorage.setItem("chat-user",JSON.stringify(data))
             setAuthuser(data)
-
+            }
         } catch (error) {
             toast.error(error.message)
         }

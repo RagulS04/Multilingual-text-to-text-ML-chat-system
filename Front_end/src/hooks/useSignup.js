@@ -4,6 +4,7 @@ import toast from "react-hot-toast"
 
 const useSignup = () => {
     const [loading,setLoading] = useState(false)
+    // const {setAuthuser} = useAuthContext();
 
     const signup = async ({fullname,mobile,gender,email}) => {
 
@@ -17,7 +18,6 @@ const useSignup = () => {
             });
 
             const data = await res.json()
-            console.log(data)
 
             if(data.error){
                 throw new Error(data.error)
