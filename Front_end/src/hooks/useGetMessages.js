@@ -1,12 +1,12 @@
 import {useEffect, useState} from 'react'
 import useConversation from '../zustand/useConversation';
 import toast from "react-hot-toast"
-import useSendMessage from './useSendMessage';
+// import useSendMessage from './useSendMessage';
 import { useAuthContext } from '../context/AuthContext';
 
 const useGetMessages = () => {
     const [loading,setLoading] = useState(false);
-    const {sendMessage} = useSendMessage()
+    //const {sendMessage} = useSendMessage()
 
     const { setSelectedLanguage } = useAuthContext();
     const {messages,setMessages,selectedConversation} = useConversation();
@@ -30,7 +30,7 @@ const useGetMessages = () => {
 
                 const data = await res.json();
 
-                //console.log(data[0])
+                // console.log("getMessage",data)
                 
                 if(data.error){ throw new Error(data.error)}
 

@@ -1,7 +1,7 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js"
 import { getReceiverSocketId,io} from "../socket/socket.js";
-
+import {query} from "../controllers/translate.controller.js"
 export const sendMessage = async (req, res) => {
     try {
         const { message } = req.body;
@@ -17,11 +17,14 @@ export const sendMessage = async (req, res) => {
                 participants: [senderId, receiverId]
             })
         }
+        const tamil = await query({ "inputs": message, "parameters": { "src_lang": "en_XX", "tgt_lang": "ta_IN" } })
 
+        console.log(tamil)
         const newMessage = await Message.create({
             senderId,
             receiverId,
-            message
+            message,
+            tamil:tamil[0].translation_text
         })
 
         if (newMessage) {
@@ -58,6 +61,8 @@ export const getMessage = async (req, res) => {
 
         const messages = conversation.messages;
 
+        // return res.status(200).json(messages);
+        // const translate = query({ "inputs": messages, "parameters": { "src_lang": "en_XX", "tgt_lang": "en_XX" } })
         return res.status(200).json(messages);
     } catch (error) {
         console.log("Error in getMessage controller ", error.message);

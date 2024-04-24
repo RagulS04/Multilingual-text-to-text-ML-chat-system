@@ -5,7 +5,7 @@ import { extractTime } from '../../utils/extractTime';
 
 const Message = ({message}) => {
 
-  const {authuser} = useAuthContext();
+  const {authuser,selectedLanguage} = useAuthContext();
   const {selectedConversation} = useConversation()
 
   const shakeClass = message => message.shouldShake ? "shake" : "";
@@ -30,7 +30,7 @@ const Message = ({message}) => {
                 </div>
             </div>
             
-            <div className={`chat-bubble ${bubbleBgcolour} ${shakeClass}`}>{message.message}</div>
+            <div className={`chat-bubble ${bubbleBgcolour} ${shakeClass}`}>{selectedLanguage === "english" ? message.message : selectedLanguage === "tamil" ? message.tamil : message.hindi}</div>
             <time className="text-xs opacity-50">{formattedTime}</time>
         </div>
     </div>
