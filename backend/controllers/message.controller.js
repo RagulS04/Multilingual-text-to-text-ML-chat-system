@@ -20,6 +20,7 @@ export const sendMessage = async (req, res) => {
         const tamil = await query({ "inputs": message, "parameters": { "src_lang": "en_XX", "tgt_lang": "ta_IN" } })
 
         console.log(tamil)
+
         const newMessage = await Message.create({
             senderId,
             receiverId,
