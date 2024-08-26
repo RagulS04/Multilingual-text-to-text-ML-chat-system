@@ -6,7 +6,7 @@ import { useAuthContext } from '../../context/AuthContext';
 
 const Signup = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {loading,signup} = useSignup();
   const {inputs,setInputs} = useAuthContext();
@@ -14,6 +14,7 @@ const Signup = () => {
   const handleGender = (gender) => {
     setInputs({...inputs,gender})
   }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +25,9 @@ const Signup = () => {
     
     await signup(inputs);
 
-    navigate('/otp_verify')
+    // navigate('/otp_verify')
 
-    //console.log(inputs)
+    console.log(inputs)
   }
 
   return (

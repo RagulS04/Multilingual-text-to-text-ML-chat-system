@@ -18,6 +18,10 @@ const messageSchema = new mongoose.Schema({
     tamil: {
         type: String,
         required: true
+    },
+    hindi: {
+        type: String,
+        required: true
     }
 },{timestamps: true});
 

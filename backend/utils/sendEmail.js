@@ -23,7 +23,7 @@ const sendMail = async (transporter, otp, receiverEmail) => {
         const mailOptions = {
             from: {
                 name: "Multilingual Chat App",
-                address: "selva152004@gmail.com",
+                address: "tnam4513@gmail.com",
             },
             to: receiverEmail,
             subject: "OTP - Signup verification",

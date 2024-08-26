@@ -13,7 +13,7 @@ const useSendMessage = () => {
         const token = localStorage.getItem('token')
 
         try {
-            const res = await fetch(`http://localhost:5000/api/messages/send/${selectedConversation._id}`,{
+            const res = await fetch(`/api/messages/send/${selectedConversation._id}`,{
                 method: "POST",
                 headers:{"Content-type":"application/json",'Authorization': `${token}`},
                 body: JSON.stringify({message})

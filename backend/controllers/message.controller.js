@@ -19,13 +19,17 @@ export const sendMessage = async (req, res) => {
         }
         const tamil = await query({ "inputs": message, "parameters": { "src_lang": "en_XX", "tgt_lang": "ta_IN" } })
 
+        const hindi = await query({"inputs": message, "parameters": { "src_lang": "en_XX","tgt_lang" :"hi_IN"}})
+
         console.log(tamil)
+        console.log(hindi)
 
         const newMessage = await Message.create({
             senderId,
             receiverId,
             message,
-            tamil:tamil[0].translation_text
+            tamil:tamil[0].translation_text,
+            hindi:hindi[0].translation_text
         })
 
         if (newMessage) {

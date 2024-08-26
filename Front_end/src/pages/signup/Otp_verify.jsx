@@ -28,7 +28,7 @@ const Otp_verify = () => {
 
     
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/email-verification/${mail}`,{
+      const res = await fetch(`/api/auth/email-verification/${mail}`,{
       method:"POST",
       headers: {"Content-type":"application/json"},
       body: JSON.stringify({otp})
@@ -56,7 +56,7 @@ const Otp_verify = () => {
     try{
       const email = inputs.email;
 
-      const res = await fetch(`http://localhost:5000/api/auth/resend-otp`,{
+      const res = await fetch(`/api/auth/resend-otp`,{
         method:"POST",
         headers: {"Content-type":"application/json"},
         body: JSON.stringify({email})
@@ -64,7 +64,7 @@ const Otp_verify = () => {
 
       const data = await res.json()
 
-      toast.success("Signup successful")
+      toast.success("OTP has been resent")
 
       if(res.status === 404 || res.status===300){
         throw new Error(data.message)
@@ -88,9 +88,11 @@ const Otp_verify = () => {
                  onChange={(e)=>{setOtp(e.target.value)}}
                 ></input>
                 
-                <button onClick={resendOTP} >Resend Otp</button>
+                <div className='flex flex-row justify-around'>
+                  <button onClick={resendOTP} >Resend Otp</button>
 
-                {!verified && <button onClick={VerifyOTP} >Verify</button>}
+                  {!verified && <button onClick={VerifyOTP} >Verify</button>}
+                </div>
 
                 </>
             }
@@ -120,17 +122,3 @@ const Otp_verify = () => {
 }
 
 export default Otp_verify
-
-// function checkError(confirmpassword,password){
-//     if(!password || !confirmpassword){
-//         toast.error("Enter all fields")
-//         return false;
-//     }
-
-//     if(password !== confirmpassword){
-//         toast.error("password doesn't match")
-//         return false;
-//     }
-
-//     return true;
-//}

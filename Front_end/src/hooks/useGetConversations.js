@@ -13,7 +13,7 @@ const useGetConversations = () => {
 
             try {
                 const token = localStorage.getItem('token');
-                const res = await fetch(`http://localhost:5000/api/users`,{
+                const res = await fetch(`/api/users`,{
                     method: 'GET',
                     headers: {
                         'Authorization' : `${token}`

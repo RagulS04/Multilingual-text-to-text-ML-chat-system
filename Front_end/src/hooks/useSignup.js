@@ -1,21 +1,22 @@
 import { useState } from 'react'
 import toast from "react-hot-toast"
-// import { useAuthContext } from '../context/AuthContext'
-
+import { useNavigate} from 'react-router-dom';
 const useSignup = () => {
     const [loading,setLoading] = useState(false)
-    // const {setAuthuser} = useAuthContext();
+    const navigate = useNavigate();
 
     const signup = async ({fullname,mobile,gender,email}) => {
 
         setLoading(true)
 
         try {
-            const res = await fetch("http://localhost:5000/api/auth/user-details", {
+            const res = await fetch("/api/auth/user-details", {
                 method: "POST",
                 headers: {"Content-type":"application/json"},
                 body: JSON.stringify({fullname,mobile,email,gender})
             });
+
+            if(res.status == 200) navigate("/otp_verify");
 
             const data = await res.json()
 
@@ -23,11 +24,10 @@ const useSignup = () => {
                 throw new Error(data.error)
             }
 
-            //localStorage.setItem("chat-user",JSON.stringify(data))
-            //setAuthuser(data)
+            
 
         } catch (error) {
-            toast.error(error.message)            
+            toast.error(error.message)           
         }finally{
             setLoading(false)
         }
